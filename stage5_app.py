@@ -7,7 +7,7 @@ from streamlit.components.v1 import declare_component
 
 from main import find_connection
 from stage5.connection_map import ranked_routes, map_graph
-from stage5.directory import exact_member, search_members
+from stage5.directory import unique_member, search_members
 from stage5.demo import DIRECTORY, HOME, NAMES, NETWORK, graph_data
 
 
@@ -115,7 +115,7 @@ with st.expander("People Finder", expanded=True):
             state.query = edit["query"]
             clear_pick()
         if edit.get("action") == "enter":
-            person = exact_member(DIRECTORY, state.query, state=region)
+            person = unique_member(DIRECTORY, state.query, state=region)
             if person is not None:
                 state.pick = person
                 open_map(person)
